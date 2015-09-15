@@ -1,6 +1,8 @@
 # from https://www.drupal.org/requirements/php#drupalversions
 FROM php:5.6-apache
 
+VOLUME ['/var/www/html']
+
 RUN a2enmod rewrite
 
 # install the PHP extensions we need
@@ -10,7 +12,6 @@ RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev libpq-dev \
 	&& docker-php-ext-install gd mbstring pdo pdo_mysql pdo_pgsql
 
 WORKDIR /var/www/html
-
 # https://www.drupal.org/node/3060/release
 ENV DRUPAL_VERSION 7.39
 ENV DRUPAL_MD5 6f42a7e9c7a1c2c4c9c2f20c81b8e79a
